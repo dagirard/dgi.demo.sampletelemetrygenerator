@@ -28,7 +28,7 @@ namespace Dgi.Demo
         private const int NumberOfNodes = 5;
 
         [FunctionName("GenerateTelemetryJob")]
-        public static async Task Run([TimerTrigger("0 */10 * * * *", RunOnStartup = false /* Only set to true to test locally! */)]TimerInfo myTimer,
+        public static async Task Run([TimerTrigger("0 */7 * * * *", RunOnStartup = false /* Only set to true to test locally! */)]TimerInfo myTimer,
             ILogger log,
             Microsoft.Azure.WebJobs.ExecutionContext context,
             CancellationToken cancellationToken)
@@ -83,9 +83,11 @@ namespace Dgi.Demo
             var telemetryClient = new TelemetryClient(configuration);
             telemetryClient.Context.InstrumentationKey = configuration.InstrumentationKey;
 
+            int delay = 0;
             foreach (TelemetryItem item in items)
             {
-                await Task.Delay(item.Delay, cancellationToken);
+                await Task.Delay(item.Delay - delay, cancellationToken);
+                delay = item.Delay;
                 log.LogDebug(new EventId(1), item.ToString());
                 item.Send(telemetryClient);
             }

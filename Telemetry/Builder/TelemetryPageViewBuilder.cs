@@ -32,7 +32,7 @@ namespace Dgi.Demo
             Debug.Assert(duration > depDuration);
 
             int depDelay = delay + (int)((duration - depDuration) * 0.3 * 1000);
-            Debug.Assert(depDelay + (depDuration * 1000) <= delay + (duration * 1000));
+            Debug.Assert(depDelay + (depDuration * 1000) < delay + (duration * 1000));
 
             string operationGuid = Guid.NewGuid().ToString("D");
             string sessionGuid = Guid.NewGuid().ToString("D");
