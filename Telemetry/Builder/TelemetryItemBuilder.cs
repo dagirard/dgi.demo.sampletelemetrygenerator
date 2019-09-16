@@ -33,7 +33,7 @@ namespace Dgi.Demo
 
         protected string GetIpAddress(int userId)
         {
-            return userIps[userIps.Count % userId];
+            return userIps[userId % userIps.Count];
         }
 
         protected string GetNodeId(int nodeId)
