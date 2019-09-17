@@ -95,6 +95,11 @@ namespace Dgi.Demo
             log.LogInformation($"GenerateTelemetryJob Timer trigger function completed at: {DateTime.UtcNow.ToTelemetryString()}");
         }
 
+        /// <summary>
+        /// Returns the date in a standardized telemetry output format.
+        /// </summary>
+        /// <param name="dt">Datetime.</param>
+        /// <returns>The UTC <see cref="dt" /> in a standard telemetry format.</returns>
         public static string ToTelemetryString(this DateTime dt)
         {
             return dt.ToUniversalTime().ToString("yyyy/MM/dd H:mm:ss UTC");

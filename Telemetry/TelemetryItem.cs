@@ -10,7 +10,7 @@ namespace Dgi.Demo
     using Microsoft.ApplicationInsights;
 
     /// <summary>
-    /// Represent a telemetry item to send to Application Insight.
+    /// Represent a telemetry event to send to Application Insight.
     /// </summary>
     public abstract class TelemetryItem : IComparable<TelemetryItem>
     {
@@ -88,6 +88,7 @@ namespace Dgi.Demo
             this.OperationDuration = operationDuration;
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{OperationId} - {SessionId} {TenantId} - {UserId} - {NodeId} - {OperationDuration.TotalSeconds}";
@@ -99,6 +100,7 @@ namespace Dgi.Demo
         /// <param name="client">Application insight telemetry client.</param>
         public abstract void Send(TelemetryClient client);
 
+        /// <inheritdoc/>
         public int CompareTo(TelemetryItem other)
         {
             if (other == null)

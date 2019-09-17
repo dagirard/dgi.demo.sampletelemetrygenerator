@@ -12,7 +12,7 @@ namespace Dgi.Demo
 {
     /// <summary>
     /// Page view telemetry item.
-    /// /// </summary>
+    /// </summary>
     public class TelemetryPageViewItem : TelemetryItem
     {
         public string PageName { get; private set; }
@@ -26,6 +26,7 @@ namespace Dgi.Demo
             this.PageType = pageType ?? throw new ArgumentNullException(nameof(pageType));   
         }
 
+        /// <inheritdoc/>
         public override void Send(TelemetryClient client)
         {
             var pageViewTelemetry = new PageViewTelemetry(this.PageName)
@@ -48,6 +49,7 @@ namespace Dgi.Demo
             client.TrackPageView(pageViewTelemetry);
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"Page, {Delay} - {PageName} - {PageType} - " + base.ToString();

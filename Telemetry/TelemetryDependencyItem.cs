@@ -10,6 +10,9 @@ namespace Dgi.Demo
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
 
+    /// <summary>
+    /// Telemetry dependency item.
+    /// </summary>
     public class TelemetryDependencyItem : TelemetryItem
     {
         public string DependencyName { get; private set; }
@@ -28,6 +31,7 @@ namespace Dgi.Demo
         {
         }
 
+        /// <inheritdoc/>
         public override void Send(TelemetryClient client)
         {
             var dependencyTelemetry = new DependencyTelemetry(

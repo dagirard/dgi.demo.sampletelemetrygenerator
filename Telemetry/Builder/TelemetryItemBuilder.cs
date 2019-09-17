@@ -9,6 +9,9 @@ namespace Dgi.Demo
     using System.Collections.Generic;
     using System.Globalization;
 
+    /// <summary>
+    /// <see cref="TelemetryItem" /> builder base class.
+    /// </summary>
     public abstract class TelemetryItemBuilder
     {
         private static List<string> userIps = new List<string>
@@ -41,6 +44,16 @@ namespace Dgi.Demo
             return "AS0001_"+ nodeId.ToString(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Build the telemetry items to be emitted.
+        /// </summary>
+        /// <param name="delay">Delay before event is emitted.</param>
+        /// <param name="operationId">Operation identifier.</param>
+        /// <param name="tenantId">Tenant identifier.</param>
+        /// <param name="userId">User identifier.</param>
+        /// <param name="nodeId">Node identifier.</param>
+        /// <param name="operationDuration">Operation duration in ms.</param>
+        /// <returns>List of <see cref="TelemetryItem" /> to emit.</returns>
         public abstract List<TelemetryItem> Build(int delay, int operationId, int tenantId, int userId, int nodeId, int operationDuration);
     }
 }

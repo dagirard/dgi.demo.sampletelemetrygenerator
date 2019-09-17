@@ -9,6 +9,9 @@ namespace Dgi.Demo
     using System.Collections.Generic;
     using System.Diagnostics;
 
+    /// <summary>
+    /// Builder for <see cref="TelemetryPageView" /> items.
+    /// </summary>
     public class TelemetryPageViewBuilder : TelemetryItemBuilder
     {
         private static List<(string page, string type, int min, int max, double serverMin, double serverMax)> OpenPageRanges = new List<(string page, string type, int min, int max, double serverMin, double serverMax)>
@@ -21,6 +24,7 @@ namespace Dgi.Demo
             { ("Item card", "Card", 1, 2, 0.4, 0.7) }
         };
 
+        /// <inheritdoc/>
         public override List<TelemetryItem> Build(int delay, int operationId, int tenantId, int userId, int nodeId, int operationDuration)
         {
             (string page, string type, int min, int max, double serverMin, double serverMax) page = OpenPageRanges[operationId % OpenPageRanges.Count];
